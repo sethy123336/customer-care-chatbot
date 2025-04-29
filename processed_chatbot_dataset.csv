@@ -1,0 +1,51 @@
+query,intent,processed_query
+Is return shipping free?,returns_info,is return shipping free
+Cancel my entire cart,cancellation_request,cancel my entire cart
+I need to cancel my order,cancellation_request,i need to cancel my order
+Problem with payment processing,general_support,problem with payment processing
+Where do I send returns?,returns_info,where do i send returns
+Forgot my password,general_support,forgot my password
+What's your phone number?,faq,what 's your phone number
+Do you have a physical store?,faq,do you have a physical store
+Can you stop my order from shipping?,cancellation_request,can you stop my order from shipping
+Return policy for sale items,returns_info,return policy for sale items
+Can I get a refund?,returns_info,can i get a refund
+Is my package delayed?,order_tracking,is my package delayed
+Need immediate order cancellation,cancellation_request,need immediate order cancellation
+Has my order been shipped?,order_tracking,has my order been shipped
+I haven't received my order yet,order_tracking,i have n't received my order yet
+Track shipment for order placed yesterday,order_tracking,track shipment for order placed yesterday
+Having trouble checking out,general_support,having trouble checking out
+Need assistance with order,general_support,need assistance with order
+Login issues,general_support,login issues
+I want to return a damaged product,returns_info,i want to return a damaged product
+What's the tracking number for my order?,order_tracking,what 's the tracking number for my order
+Return label request,returns_info,return label request
+Where do you ship to?,faq,where do you ship to
+Is it too late to cancel?,cancellation_request,is it too late to cancel
+How do I cancel a purchase?,cancellation_request,how do i cancel a purchase
+Where is my order?,order_tracking,where is my order
+How do I contact customer service?,general_support,how do i contact customer service
+How do I create an account?,faq,how do i create an account
+Cancel order #54321,cancellation_request,cancel order 54321
+When will my order arrive?,order_tracking,when will my order arrive
+What's your warranty policy?,faq,what 's your warranty policy
+What's your return policy?,returns_info,what 's your return policy
+Cancel my recent purchase,cancellation_request,cancel my recent purchase
+Can you track my package?,order_tracking,can you track my package
+Do you ship internationally?,faq,do you ship internationally
+What's the status of order #12345?,order_tracking,what 's the status of order 12345
+Can't add items to cart,general_support,ca n't add items to cart
+Want to cancel my subscription,cancellation_request,want to cancel my subscription
+How can I change my password?,faq,how can i change my password
+I need help with my account,general_support,i need help with my account
+How do I return an item?,returns_info,how do i return an item
+What payment methods do you accept?,faq,what payment methods do you accept
+Can I exchange instead of return?,returns_info,can i exchange instead of return
+Technical support needed,general_support,technical support needed
+What are your business hours?,faq,what are your business hours
+Need update on my delivery,order_tracking,need update on my delivery
+Website is not loading properly,general_support,website is not loading properly
+How long do I have to return?,returns_info,how long do i have to return
+Are there any ongoing sales?,faq,are there any ongoing sales
+How to cancel pending order?,cancellation_request,how to cancel pending order
