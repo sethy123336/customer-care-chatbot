@@ -1,0 +1,51 @@
+query,intent
+Is return shipping free?,returns_info
+Cancel my entire cart,cancellation_request
+I need to cancel my order,cancellation_request
+Problem with payment processing,general_support
+Where do I send returns?,returns_info
+Forgot my password,general_support
+What's your phone number?,faq
+Do you have a physical store?,faq
+Can you stop my order from shipping?,cancellation_request
+Return policy for sale items,returns_info
+Can I get a refund?,returns_info
+Is my package delayed?,order_tracking
+Need immediate order cancellation,cancellation_request
+Has my order been shipped?,order_tracking
+I haven't received my order yet,order_tracking
+Track shipment for order placed yesterday,order_tracking
+Having trouble checking out,general_support
+Need assistance with order,general_support
+Login issues,general_support
+I want to return a damaged product,returns_info
+What's the tracking number for my order?,order_tracking
+Return label request,returns_info
+Where do you ship to?,faq
+Is it too late to cancel?,cancellation_request
+How do I cancel a purchase?,cancellation_request
+Where is my order?,order_tracking
+How do I contact customer service?,general_support
+How do I create an account?,faq
+Cancel order #54321,cancellation_request
+When will my order arrive?,order_tracking
+What's your warranty policy?,faq
+What's your return policy?,returns_info
+Cancel my recent purchase,cancellation_request
+Can you track my package?,order_tracking
+Do you ship internationally?,faq
+What's the status of order #12345?,order_tracking
+Can't add items to cart,general_support
+Want to cancel my subscription,cancellation_request
+How can I change my password?,faq
+I need help with my account,general_support
+How do I return an item?,returns_info
+What payment methods do you accept?,faq
+Can I exchange instead of return?,returns_info
+Technical support needed,general_support
+What are your business hours?,faq
+Need update on my delivery,order_tracking
+Website is not loading properly,general_support
+How long do I have to return?,returns_info
+Are there any ongoing sales?,faq
+How to cancel pending order?,cancellation_request
