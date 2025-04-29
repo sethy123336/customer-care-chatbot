@@ -6,17 +6,17 @@
     <title>Customer Care Chatbot</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 20px;
-            background-color: #f5f5f5;
+            background-color: #f0f2f5;
         }
         .chat-container {
-            max-width: 600px;
+            max-width: 800px;
             margin: 0 auto;
             background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
             overflow: hidden;
         }
         .chat-header {
@@ -25,64 +25,98 @@
             padding: 20px;
             text-align: center;
         }
+        .chat-header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
         .chat-messages {
             padding: 20px;
-            max-height: 400px;
+            max-height: 500px;
             overflow-y: auto;
         }
         .message {
-            margin-bottom: 15px;
-            padding: 10px 15px;
-            border-radius: 5px;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 10px;
             max-width: 80%;
+            line-height: 1.5;
+            white-space: pre-line;
         }
         .user-message {
             background-color: #E3F2FD;
             margin-left: auto;
+            color: #1565C0;
         }
         .bot-message {
             background-color: #F5F5F5;
             margin-right: auto;
+            color: #333;
         }
         .chat-input {
             padding: 20px;
             border-top: 1px solid #eee;
             display: flex;
+            background-color: #fff;
         }
         input[type="text"] {
             flex: 1;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
             margin-right: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #2196F3;
         }
         button {
-            padding: 10px 20px;
+            padding: 12px 25px;
             background-color: #2196F3;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
         }
         button:hover {
             background-color: #1976D2;
         }
+        button:active {
+            transform: scale(0.98);
+        }
         .intent-label {
             font-size: 0.8em;
             color: #666;
-            margin-top: 5px;
+            margin-top: 8px;
+            font-style: italic;
+        }
+        .typing-indicator {
+            display: none;
+            margin-bottom: 15px;
+            padding: 10px;
+            color: #666;
+            font-style: italic;
+        }
+        .typing-indicator.visible {
+            display: block;
         }
     </style>
 </head>
 <body>
     <div class="chat-container">
         <div class="chat-header">
-            <h1>Customer Care Chatbot</h1>
+            <h1>Customer Care Assistant</h1>
         </div>
         <div class="chat-messages" id="chat-messages">
             <div class="message bot-message">
-                Hello! How can I help you today?
+                Hello! I'm your customer care assistant. How may I help you today?
             </div>
+        </div>
+        <div class="typing-indicator" id="typing-indicator">
+            Assistant is typing...
         </div>
         <div class="chat-input">
             <input type="text" id="user-input" placeholder="Type your message here..." onkeypress="handleKeyPress(event)">
@@ -91,10 +125,26 @@
     </div>
 
     <script>
+        // Generate a unique session ID
+        const sessionId = 'session_' + Math.random().toString(36).substr(2, 9);
+        let isTyping = false;
+
         function handleKeyPress(event) {
-            if (event.key === 'Enter') {
+            if (event.key === 'Enter' && !isTyping) {
                 sendMessage();
             }
+        }
+
+        function showTypingIndicator() {
+            const indicator = document.getElementById('typing-indicator');
+            indicator.classList.add('visible');
+            isTyping = true;
+        }
+
+        function hideTypingIndicator() {
+            const indicator = document.getElementById('typing-indicator');
+            indicator.classList.remove('visible');
+            isTyping = false;
         }
 
         function addMessage(message, isUser, intent = null) {
@@ -107,7 +157,7 @@
             if (intent) {
                 const intentLabel = document.createElement('div');
                 intentLabel.className = 'intent-label';
-                intentLabel.textContent = `Intent: ${intent}`;
+                intentLabel.textContent = `Intent: ${intent.replace(/_/g, ' ')}`;
                 messageDiv.appendChild(intentLabel);
             }
             
@@ -119,23 +169,30 @@
             const input = document.getElementById('user-input');
             const message = input.value.trim();
             
-            if (message) {
+            if (message && !isTyping) {
                 addMessage(message, true);
                 input.value = '';
+                showTypingIndicator();
                 
                 fetch('/chat', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'X-Session-ID': sessionId
                     },
                     body: JSON.stringify({ message: message })
                 })
                 .then(response => response.json())
                 .then(data => {
-                    addMessage(data.response, false, data.intent);
+                    hideTypingIndicator();
+                    // Add a small delay to make it feel more natural
+                    setTimeout(() => {
+                        addMessage(data.response, false, data.intent);
+                    }, 500);
                 })
                 .catch(error => {
                     console.error('Error:', error);
+                    hideTypingIndicator();
                     addMessage('Sorry, I encountered an error. Please try again.', false);
                 });
             }
